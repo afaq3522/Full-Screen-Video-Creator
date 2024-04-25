@@ -184,27 +184,13 @@ public class ActivityVideoPreview extends AdBaseActivity {
             case R.id.iv_MyVideo:
                 startActivity(new Intent(context, ActivityMyVideo.class));
                 break;
-            case R.id.btn_share:
-                shareVideo(context, Video_Path);
-                break;
             case R.id.btn_delete:
                 showDeleteDailog();
                 break;
         }
     }
 
-    public static void shareVideo(Context context, String filePath) {
-        Uri mainUri = Uri.parse(filePath);
-        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-        sharingIntent.setType("video/mp4");
-        sharingIntent.putExtra(Intent.EXTRA_STREAM, mainUri);
-        sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        try {
-            context.startActivity(Intent.createChooser(sharingIntent, "Share Video using"));
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(context, "Application not found to open this file", Toast.LENGTH_LONG).show();
-        }
-    }
+
 
     public void showDeleteDailog() {
         final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);

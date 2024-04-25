@@ -79,13 +79,7 @@ public class AdapterMyVideoFileList extends RecyclerView.Adapter<AdapterMyVideoF
 
             }
         });
-        viewHolder.iv_sharefile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                shareVideo(context, urlpath);
-            }
-        });
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,18 +94,6 @@ public class AdapterMyVideoFileList extends RecyclerView.Adapter<AdapterMyVideoF
 
     }
 
-    public static void shareVideo(Context context, String filePath) {
-        Uri mainUri = Uri.parse(filePath);
-        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-        sharingIntent.setType("video/mp4");
-        sharingIntent.putExtra(Intent.EXTRA_STREAM, mainUri);
-        sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        try {
-            context.startActivity(Intent.createChooser(sharingIntent, "Share Video using"));
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(context, "Application not found to open this file", Toast.LENGTH_LONG).show();
-        }
-    }
 
     @Override
     public int getItemCount() {
@@ -120,7 +102,7 @@ public class AdapterMyVideoFileList extends RecyclerView.Adapter<AdapterMyVideoF
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView iv_play, iv_fileimage, iv_delete, iv_sharefile;
+        ImageView iv_play, iv_fileimage, iv_delete;
         TextView tv_fileName;
 
         public ViewHolder(@NonNull View itemView) {
@@ -129,7 +111,6 @@ public class AdapterMyVideoFileList extends RecyclerView.Adapter<AdapterMyVideoF
             iv_play = itemView.findViewById(R.id.iv_play);
             iv_fileimage = itemView.findViewById(R.id.iv_fileimage);
             iv_delete = itemView.findViewById(R.id.iv_delete);
-            iv_sharefile = itemView.findViewById(R.id.iv_sharefile);
 
 
         }
